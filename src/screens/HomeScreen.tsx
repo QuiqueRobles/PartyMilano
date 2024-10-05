@@ -29,7 +29,7 @@ const clubs: Club[] = [
     name: 'Just Cavalli',
     rating: 4.6,
     attendees: 200,
-    image: require('../../assets/images/just_cavalli_photo.jpg'),
+    image: require('../../assets/images/just_cavalli_photo.png'),
     price: 25,
     category: 'Fashion',
   },
