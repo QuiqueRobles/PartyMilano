@@ -29,7 +29,7 @@ const clubs: Club[] = [
     name: 'Just Cavalli',
     rating: 4.6,
     attendees: 200,
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/just-cavalli-Hy5Ue5Aw5Ue5Aw.jpg',
+    image: require('../../assets/images/just_cavalli_photo.jpg'),
     price: 25,
     category: 'Fashion',
   },
