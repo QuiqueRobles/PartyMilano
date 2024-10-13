@@ -1,0 +1,103 @@
+{
+  "clubs": [
+    {
+      "id": "1",
+      "name": "Armani Privé",
+      "rating": 4.8,
+      "attendees": 250,
+      "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/armani-prive-Hy5Ue5Aw5Ue5Aw.jpg",
+      "price": 30,
+      "category": "Luxury",
+      "description": "Experience the epitome of Milan nightlife at Armani Privé. Sleek design, world-class DJs, and an atmosphere of pure luxury await you.",
+      "address": "Via Manzoni 31, 20121 Milano",
+      "openingHours": "23:00 - 04:00",
+      "dressCode": "Elegant",
+      "musicGenre": "House, Electronic"
+    },
+    {
+      "id": "2",
+      "name": "Just Cavalli",
+      "rating": 4.6,
+      "attendees": 200,
+      "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/just-cavalli-Hy5Ue5Aw5Ue5Aw.jpg",
+      "price": 25,
+      "category": "Fashion",
+      "description": "Immerse yourself in the glamorous world of Roberto Cavalli at this trendy nightclub. Enjoy signature cocktails and dance the night away.",
+      "address": "Via Luigi Camoens, 20121 Milano",
+      "openingHours": "23:30 - 05:00",
+      "dressCode": "Smart Casual",
+      "musicGenre": "Pop, R&B"
+    },
+    {
+      "id": "3",
+      "name": "Hollywood",
+      "rating": 4.5,
+      "attendees": 180,
+      "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hollywood-Hy5Ue5Aw5Ue5Aw.jpg",
+      "price": 20,
+      "category": "Nightclub",
+      "description": "Step into the glitz and glamour of Hollywood right in the heart of Milan. Multiple dance floors and themed nights make every visit unique.",
+      "address": "Corso Como 15, 20154 Milano",
+      "openingHours": "23:00 - 04:30",
+      "dressCode": "Stylish",
+      "musicGenre": "Mixed, Top 40"
+    },
+    {
+      "id": "4",
+      "name": "Loolapaloosa",
+      "rating": 4.3,
+      "attendees": 220,
+      "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/loolapaloosa-Hy5Ue5Aw5Ue5Aw.jpg",
+      "price": 15,
+      "category": "Dance",
+      "description": "A favorite among locals and tourists alike, Loolapaloosa offers a vibrant atmosphere with great music and affordable drinks.",
+      "address": "Corso Como 17, 20154 Milano",
+      "openingHours": "22:30 - 04:00",
+      "dressCode": "Casual Chic",
+      "musicGenre": "Dance, Electronic"
+    },
+    {
+      "id": "5",
+      "name": "Volt Club",
+      "rating": 4.7,
+      "attendees": 190,
+      "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/volt-club-Hy5Ue5Aw5Ue5Aw.jpg",
+      "price": 22,
+      "category": "Electronic",
+      "description": "Volt Club is the go-to destination for electronic music lovers. State-of-the-art sound system and regular appearances by international DJs.",
+      "address": "Via Felice Casati 14, 20124 Milano",
+      "openingHours": "23:30 - 05:00",
+      "dressCode": "Creative",
+      "musicGenre": "Techno, House"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Sofia Rossi",
+      "email": "sofia.rossi@example.com",
+      "phone": "+39 123 456 7890",
+      "favoriteClub": "Armani Privé",
+      "attendedEvents": 15,
+      "profilePicture": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/profile-pic-NQx5pWEHFUTWd8TXB0c1F6l9zLBHEQ.jpg",
+      "preferences": {
+        "musicGenres": ["House", "Electronic"],
+        "notifications": true
+      },
+      "recentActivity": [
+        {
+          "event": "Attended Volt Club",
+          "date": "2024-03-10T22:00:00Z"
+        },
+        {
+          "event": "Purchased ticket for Just Cavalli",
+          "date": "2024-03-05T18:30:00Z"
+        },
+        {
+          "event": "Reviewed Armani Privé",
+          "date": "2024-02-28T10:15:00Z"
+        }
+      ]
+    }
+  ]
+}

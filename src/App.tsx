@@ -7,6 +7,7 @@ import HomeScreen from './screens/HomeScreen';
 import MapScreen from './screens/MapScreen';
 import TicketsScreen from './screens/TicketsScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import { db } from './firebase/config';
 
 const Tab = createBottomTabNavigator();
 

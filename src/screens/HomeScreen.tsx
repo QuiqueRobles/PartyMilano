@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
+// src/screens/HomeScreen.tsx
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, Image, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase/config';
 
 interface Club {
   id: string;
@@ -14,62 +17,12 @@ interface Club {
   category: string;
 }
 
-const clubs: Club[] = [
-  {
-    id: '1',
-    name: 'Armani Privé',
-    rating: 4.8,
-    attendees: 250,
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/armani-prive-Hy5Ue5Aw5Ue5Aw.jpg',
-    price: 30,
-    category: 'Luxury',
-  },
-  {
-    id: '2',
-    name: 'Just Cavalli',
-    rating: 4.6,
-    attendees: 200,
-    image: require('../../assets/images/just_cavalli_photo.png'),
-    price: 25,
-    category: 'Fashion',
-  },
-  {
-    id: '3',
-    name: 'Hollywood',
-    rating: 4.5,
-    attendees: 180,
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hollywood-Hy5Ue5Aw5Ue5Aw.jpg',
-    price: 20,
-    category: 'Nightclub',
-  },
-  {
-    id: '4',
-    name: 'Loolapaloosa',
-    rating: 4.3,
-    attendees: 220,
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/loolapaloosa-Hy5Ue5Aw5Ue5Aw.jpg',
-    price: 15,
-    category: 'Dance',
-  },
-  {
-    id: '5',
-    name: 'Volt Club',
-    rating: 4.7,
-    attendees: 190,
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/volt-club-Hy5Ue5Aw5Ue5Aw.jpg',
-    price: 22,
-    category: 'Electronic',
-  },
-];
-
-const { width } = Dimensions.get('window');
-
 const ClubCard: React.FC<{ club: Club; onPress: () => void }> = ({ club, onPress }) => (
   <TouchableOpacity onPress={onPress} className="mb-6">
     <View className="relative">
       <Image
         source={{ uri: club.image }}
-        style={{ width: width - 48, height: 200 }}
+        style={{ width: '100%', height: 200 }}
         className="rounded-xl"
       />
       <LinearGradient
@@ -104,13 +57,40 @@ const CategoryButton: React.FC<{ category: string; isSelected: boolean; onPress:
 );
 
 const HomeScreen: React.FC = () => {
+  const [clubs, setClubs] = useState<Club[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const categories = ['All', ...new Set(clubs.map(club => club.category))];
+  useEffect(() => {
+    const fetchClubs = async () => {
+      try {
+        const clubsCollection = collection(db, 'clubs');
+        const clubsSnapshot = await getDocs(clubsCollection);
+        const clubsList = clubsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Club));
+        setClubs(clubsList);
+      } catch (error) {
+        console.error('Error fetching clubs:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClubs();
+  }, []);
+
+  const categories = ['All', ...Array.from(new Set(clubs.map(club => club.category)))];
 
   const filteredClubs = selectedCategory && selectedCategory !== 'All'
     ? clubs.filter(club => club.category === selectedCategory)
     : clubs;
+
+  if (loading) {
+    return (
+      <SafeAreaView className="flex-1 bg-black justify-center items-center">
+        <ActivityIndicator size="large" color="#A78BFA" />
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-black">
