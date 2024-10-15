@@ -1,4 +1,3 @@
-// src/screens/HomeScreen.tsx
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -17,35 +16,40 @@ interface Club {
   category: string;
 }
 
-const ClubCard: React.FC<{ club: Club; onPress: () => void }> = ({ club, onPress }) => (
-  <TouchableOpacity onPress={onPress} className="mb-6">
-    <View className="relative">
-      <Image
-        source={{ uri: club.image }}
-        style={{ width: '100%', height: 200 }}
-        className="rounded-xl"
-      />
-      <LinearGradient
-        colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)']}
-        className="absolute bottom-0 left-0 right-0 h-24 rounded-b-xl"
-      />
-      <View className="absolute bottom-0 left-0 right-0 p-4">
-        <Text className="text-white text-xl font-bold">{club.name}</Text>
-        <View className="flex-row justify-between items-center mt-2">
-          <View className="flex-row items-center">
-            <Feather name="star" size={16} color="#FFD700" />
-            <Text className="text-yellow-400 ml-1">{club.rating}</Text>
+const ClubCard: React.FC<{ club: Club; onPress: () => void }> = ({ club, onPress }) => {
+  const [imageError, setImageError] = useState(false);
+
+  return (
+    <TouchableOpacity onPress={onPress} className="mb-6">
+      <View className="relative">
+        <Image
+          source={{ uri: imageError ? 'https://via.placeholder.com/400x200?text=No+Image' : club.image }}
+          style={{ width: '100%', height: 200 }}
+          className="rounded-xl"
+          onError={() => setImageError(true)}
+        />
+        <LinearGradient
+          colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)']}
+          className="absolute bottom-0 left-0 right-0 h-24 rounded-b-xl"
+        />
+        <View className="absolute bottom-0 left-0 right-0 p-4">
+          <Text className="text-white text-xl font-bold">{club.name}</Text>
+          <View className="flex-row justify-between items-center mt-2">
+            <View className="flex-row items-center">
+              <Feather name="star" size={16} color="#FFD700" />
+              <Text className="text-yellow-400 ml-1">{club.rating}</Text>
+            </View>
+            <View className="flex-row items-center">
+              <Feather name="users" size={16} color="#A78BFA" />
+              <Text className="text-purple-400 ml-1">{club.attendees}</Text>
+            </View>
+            <Text className="text-green-400 font-semibold">€{club.price}</Text>
           </View>
-          <View className="flex-row items-center">
-            <Feather name="users" size={16} color="#A78BFA" />
-            <Text className="text-purple-400 ml-1">{club.attendees}</Text>
-          </View>
-          <Text className="text-green-400 font-semibold">€{club.price}</Text>
         </View>
       </View>
-    </View>
-  </TouchableOpacity>
-);
+    </TouchableOpacity>
+  );
+};
 
 const CategoryButton: React.FC<{ category: string; isSelected: boolean; onPress: () => void }> = ({ category, isSelected, onPress }) => (
   <TouchableOpacity
